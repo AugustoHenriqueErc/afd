@@ -17,30 +17,17 @@ public class Afd
 
     public void process(String word)
     {
+        State actualState = initial;
         word = new StringBuilder(word);
-
-        if(!)
-        for(char symbol: word)
+        for(int i = 0; i < word.lenght();i++)
         {
-
+            if(isSymbol(word.get(i))!= -1) actualState.δ(word.get(i)) = actualState;
         }
-
-
-
-
-
     }
 
-    private boolean isWord(word)
+    private int isSymbol(String Symbol)
     {
-        for(String symbol: alphabet)
-        {
-            for(String word: word)
-            {
-                
-            }
-        }
-
+        return word.indexOf(Symbol);
     }
 
 

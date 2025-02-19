@@ -1,27 +1,21 @@
+import java.util.HashMap;
+
 public class State
 {
-    HashMap<String, State> states;
+    HashMap<String, State> affordableStates;
     public State
     {
-
+        affordableStates = new HashMap<>();
     }
 
-    public setAffordableStates(State state, String name)
+    public setAffordableStates(State state, String symbol)
     {
-        states.put(name, state);
+        states.put(symbol, state);
+
     }
 
-    public setTransition(String alphapbet, State)
+    public State δ(String symbol)
     {
-
+        return states.get(symbol);
     }
-
-    public State δ(State state, String Σ)
-    {
-
-    }
-
-
-
-
 }
