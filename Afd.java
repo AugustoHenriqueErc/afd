@@ -41,14 +41,26 @@ public class Afd
     {
         State actualState = initial;
         word = word.toCharArray();
+        String str = "";
         for(int i = 0; i < word.lenght();i++)
         {
+            str += word(i);
+            if(isSymbol(str))
+            {
+                str ="";
+                actualState.
+                break;
+            }
         }
     }
 
-    private int isSymbol(String symbol)
+    private boolean isSymbol(String symbol)
     {
-
+        for(String a: alphabet)
+        {
+            if(a.equals(symbol)) return true
+            else return false
+        }
     }
 
 
