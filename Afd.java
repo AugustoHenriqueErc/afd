@@ -39,7 +39,7 @@ public class Afd
 
     public void process(String word)
     {
-        State actualState = initial;
+        State ac = initial;
         word = word.toCharArray();
         String str = "";
         for(int i = 0; i < word.lenght();i++)
@@ -47,9 +47,8 @@ public class Afd
             str += word(i);
             if(isSymbol(str))
             {
+                ac = ac.transition(str);
                 str ="";
-                actualState.
-                break;
             }
         }
     }
@@ -58,8 +57,8 @@ public class Afd
     {
         for(String a: alphabet)
         {
-            if(a.equals(symbol)) return true
-            else return false
+            if(a.equals(symbol)) return true;
+            else return false;
         }
     }
 

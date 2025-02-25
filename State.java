@@ -8,13 +8,13 @@ public class State
         affordableStates = new HashMap<>();
     }
 
-    public setAffordableStates(State state, String symbol)
+    public setAffordableState(State state, String symbol)
     {
         states.put(symbol, state);
 
     }
 
-    public State δ(String symbol)
+    public State transition(String symbol)
     {
         return states.get(symbol);
     }
