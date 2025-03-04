@@ -38,7 +38,7 @@ public class main
 
         //Afd processa a palavra
         word = scr.nextLine();
-        afd1.process(word);
+        afd1.proccess(word);
 
     }
 }

@@ -26,60 +26,32 @@ public class Afd
 
     public void setFinalStates(State finalState)
     {
-        for(State state: states)
+        boolean found = false;
+        for(State s: states)
         {
-            if(state == finalState)
+            if(s == finalState)
             {
-                finalStates.add(state);
+                finalStates.add(s);
+                found = true;
                 break;
             }
-            else throw new IllegalArgumentException("Afd does not have this state");
         }
+        if(!found) throw new IllegalArgumentException("Afd does not have this state");
 
     }
     public void setInitialState(State initialState)
     {
-
-        for(State state: states)
+        boolean found = false;
+        for(State s: states)
         {
-            if(state == initialState)
+            if(s == initialState)
             {
-                this.initialState = state;
+                this.initialState = s;
+                found = true;
                 break;
             }
-            else throw new IllegalArgumentException("Afd does not have this state");
         }
-    }
-
-
-
-    public void process(String word)
-    {
-        State currentState = initialState;
-        char[] wordCharArray = word.toCharArray();
-        String str = "";
-        StringBuilder sb = new StringBuilder();
-        boolean accepted = false;
-
-      for(char c: wordCharArray)
-       {
-            sb.append(c);
-       }
-
-        for(int i = 0; i < sb.length();i++)
-        {
-            str = str + sb.toString();
-            if(isSymbol(str))
-            {
-                currentState = currentState.transition(str);
-                str ="";
-                accepted = true;
-            }
-            else accepted = false;
-        }
-
-        if(accepted) System.out.print("Accepted");
-        else System.out.print("Denied");
+        if(!found) throw new IllegalArgumentException("Afd does not have this state");
     }
 
     private boolean isSymbol(String symbol)
@@ -87,12 +59,32 @@ public class Afd
         for(String a: alphabet)
         {
             if(a.equals(symbol)) return true;
-            else return false;
         }
-        return true;
+        return false;
     }
 
+    private boolean isFinalState(State state)
+    {
+        for(State s:finalStates)
+        {
+            if(s == state) return true;
+        }
+        return false;
+    }
 
-
-
+    public void proccess(String word)
+    {
+        char[] wordChar = word.toCharArray();
+        String symbol = String.valueOf(wordChar[0]);
+        State currentState = initialState;
+        boolean accepted = false;
+        for(int i= 0; i < wordChar.length; i++)
+        {
+            if(isSymbol(symbol)) currentState = currentState.transition(symbol);
+            else symbol = symbol + String.valueOf(wordChar[i+1]);
+            if(i == wordChar.length-1 && isSymbol(symbol) && isFinalState(currentState)) accepted = true;
+        }
+        if(accepted) System.out.println("Accepted");
+        else System.out.println("Denied");
+    }
 }
